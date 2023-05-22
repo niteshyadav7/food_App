@@ -2,7 +2,6 @@
   "name": "food_app",
   "version": "1.0.0",
   "description": "This is the food oredering App",
-  
   "scripts": {
     "start": "parcel public/index.html",
     "build": "parcel build public/index.html",
