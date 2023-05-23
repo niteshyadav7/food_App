@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { restaurantData } from "../utils/constants";
 import Card from "./Card";
 import { filteredData } from "./imp";
+import Shimmer from "./Shimmer";
 
 const CardShow = () => {
   const [searchInput, setSearchInput] = useState("");
-  const [restaurant, setRestaurant] = useState(restaurantData);
+  const [restaurant, setRestaurant] = useState([]);
+  const [filteredRestaurant, setFilteredRestaurant] = useState([]);
 
   const handleChange = (e) => {
     setSearchInput(e.target.value);
@@ -13,17 +15,35 @@ const CardShow = () => {
   };
 
   const handleClick = () => {
-    const rest = filteredData(searchInput, restaurantData);
-    setRestaurant(rest);
+    const rest = filteredData(searchInput, filteredRestaurant);
+    setFilteredRestaurant(rest);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const rest = filteredData(searchInput, restaurantData);
-    setRestaurant(rest);
+    const rest = filteredData(searchInput, restaurant);
+    setFilteredRestaurant(rest);
   };
 
+  useEffect(() => {
+    getRestaurantData();
+  }, []);
 
+  const getRestaurantData = async function () {
+    try {
+      const data = await fetch(
+        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.375461&lng=79.457907&page_type=DESKTOP_WEB_LISTING"
+      );
+      const json = await data.json();
+
+      // console.log(json?.data?.cards?.[2]?.data.data.cards);
+      setRestaurant(json?.data?.cards?.[2]?.data.data.cards);
+      setFilteredRestaurant(json?.data?.cards?.[2]?.data.data.cards);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+if(!restaurant) return <Shimmer />
   return (
     <>
       <div className="text-center">
@@ -42,10 +62,16 @@ const CardShow = () => {
           </button>
         </form>
       </div>
-      <div className="flex justify-around flex-wrap">
-        {restaurant.map((rest) => {
-          return <Card key={rest.data.id} data={rest.data} />;
-        })}
+      <div className="ml-10 mr-10 ">
+        {restaurant.length === 0 ? (
+          <Shimmer />
+        ) : (
+          <div className="flex justify-around flex-wrap ">
+            {filteredRestaurant.map((rest) => {
+              return <Card  key={rest.data.id} data={rest.data} />;
+            })}
+          </div>
+        )}
       </div>
     </>
   );
