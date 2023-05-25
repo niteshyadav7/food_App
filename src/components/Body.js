@@ -4,6 +4,7 @@ import Card from "./Card";
 import { filteredData } from "./helper";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnline from "../Hooks/useOnline";
 
 const Body = () => {
   const [searchInput, setSearchInput] = useState("");
@@ -45,6 +46,14 @@ const Body = () => {
       console.log(err.message);
     }
   };
+  
+  const online=useOnline();
+  if(!online){
+    return(
+      <div>offline</div>
+    )
+  }
+  
   if (!restaurant) return <Shimmer />;
   return (
     <>
