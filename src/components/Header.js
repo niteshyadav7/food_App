@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
-import { LOGO_URL } from "../utils/helper";
+import {LOGO_URL} from "./helper"
+
+
 
 const Header = () => {
   return (

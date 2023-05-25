@@ -1,8 +1,7 @@
-// import { cloudinary_URL } from "../utils/helper";
-const img='https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/'
+import { cloudinary_URL } from "./helper";
 
 const Card = ({ data }) => {
-//   console.log(data);
+  //   console.log(data);
   const {
     cloudinaryImageId,
     name,
@@ -15,7 +14,7 @@ const Card = ({ data }) => {
     <div className="hover:border-2 hover:shadow-xl w-72 h-auto">
       <img
         className="p-4"
-        src={img + cloudinaryImageId}
+        src={cloudinary_URL + cloudinaryImageId}
         width={400}
       />
       <div className="text-lg font-semibold">{name}</div>
