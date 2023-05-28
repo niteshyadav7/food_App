@@ -16,6 +16,9 @@ export default store;
 ### PROVIDING THE STORE :
 
 ```
+
+
+
 import store from "./redux/store.js";
 import {Provider} from "react-redux";
 
@@ -30,6 +33,9 @@ import {Provider} from "react-redux";
 ### MAKLING SLICES
 
 ```
+import {cartSlice} from "@reduxjs/toolkit"
+<!-- missed it -->
+
 const cartSlice=createSlice({
     name:"cart",
     initialState:{
