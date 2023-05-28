@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import { cloudinary_URL } from "./helper";
+import UserContext from "./UserContext";
 
 const Card = ({ data }) => {
   //   console.log(data);
+  const user = useContext(UserContext);
+
   const {
     cloudinaryImageId,
     name,
@@ -24,6 +28,8 @@ const Card = ({ data }) => {
         <li className="ml-14 text-sm">{slaString}</li>
         <li className="ml-14 text-sm">{costForTwoString}</li>
       </ul>
+      <span>{user.user.name}</span>
+      <span>{user.user.email}</span>
     </div>
   );
 };

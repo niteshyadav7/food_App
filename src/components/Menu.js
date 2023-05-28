@@ -26,7 +26,7 @@ const Menu = () => {
   const restaurant = useMenu(id);
 
   return (
-    <div className="flex justify-between">
+    <div className="flex ">
       <div className="food">
         <div>Menu id:{id}</div>
         <img src={cloudinary_URL + restaurant.cloudinaryImageId} width={300} />
@@ -35,6 +35,27 @@ const Menu = () => {
         <div>{restaurant.avgRating}</div>
         <div>{restaurant.city}</div>
       </div>
+      <ul className="ml-80">
+        <li>Aloo tikki</li>
+        <li>Aloo tuk</li>
+        <li>Aloo matar</li>
+        <li>Aloo kulcha</li>
+        <li>Baati</li>
+        <li>Biryani</li>
+        <li>Butter chicken</li>
+        <li>Chicken razala</li>
+        <li>Chicken Tikka</li>
+        <li>Daal puri</li>
+        <li>Poha</li>
+        <li>Fara</li>
+        <li>Phirni</li>
+        <li>Gajar matar aloo</li>
+        <li>Imarti</li>
+        <li>Khichdi</li>
+        <li>Lauki ke kofte</li>
+        <li>Makhaan ka kheer</li>
+        <li>Mathura ke pede</li>
+      </ul>
     </div>
   );
 };

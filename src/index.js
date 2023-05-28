@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy } from "react";
 import ReactDOM from "react-dom/client";
 
 import App from "./App";
@@ -6,10 +6,13 @@ import Body from "./components/Body";
 import "./index.css";
 import Error from "./components/Error";
 import About from "./Navbar/About";
-import Contact from "./Navbar/Contact"
+import Contact from "./Navbar/Contact";
 
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Menu from "./components/Menu";
+// import InstaMart from "./Navbar/InstaMart";
+
+const InstaMart = lazy(() => import("./Navbar/InstaMart"));
 
 const appRouter = createBrowserRouter([
   {
@@ -26,13 +29,17 @@ const appRouter = createBrowserRouter([
         element: <About />,
       },
       {
-        path:"/contact",
-        element:<Contact />
+        path: "/contact",
+        element: <Contact />,
       },
       {
-        path:"/menu/:id",
-        element:<Menu />
-      }
+        path: "/menu/:id",
+        element: <Menu />,
+      },
+      {
+        path: "/instamart",
+        element: <InstaMart />,
+      },
     ],
   },
 ]);
