@@ -3,8 +3,8 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { useState } from "react";
 import UserContext from "./components/UserContext";
-import { Provider } from "react-redux";
-import store from "./redux/store";
+// import { Provider } from "react-redux";
+// import store from "./redux/store";
 
 const App = () => {
   const [user, setUser] = useState({
@@ -13,7 +13,7 @@ const App = () => {
   });
 
   return (
-    <Provider store={store}>
+    // <Provider store={store}>
       <UserContext.Provider
         value={{
           user: user,
@@ -23,7 +23,7 @@ const App = () => {
         <Outlet />
         <Footer />
       </UserContext.Provider>
-    </Provider>
+    // </Provider>
   );
 };
 
